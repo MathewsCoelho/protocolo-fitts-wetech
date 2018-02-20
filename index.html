@@ -6,9 +6,13 @@
 </head>
 
 <script>
+	var flag1 = false;
 	var flag2 = false;
 	var flag3 = false;
 	var flag4 = false;
+
+	var cliques;
+
 	function start(){
 		var cliques = 0;
 		document.getElementById("circulo1").style.background = "black";
@@ -19,7 +23,7 @@
 	}
 
 	function clique(){
-		cliques = cliques + 1;
+		cliques++;
 	}
 	function muda1(){
 		if(flag1 == true){
