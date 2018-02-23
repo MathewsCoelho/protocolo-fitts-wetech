@@ -1,9 +1,16 @@
-/* iniciar o script após o carregamento da 'pagina' */
+/* iniciar o script após o carregamento da 'pagina'. */
 window.addEventListener('DOMContentLoaded', init)
 
 
 function init(){	
-	/* FAZER: comentar o que são essas flags*/
+
+	/* variveis de configuração, adicionar mais configurações. */
+	config = {
+		cor:{alvo:"#000", vizinho:"#C0C0C0"},
+		elemento: {quantidade:10}
+	}
+
+	/* FAZER: comentar o que são essas flags. */
 	flag1 = false;
 	flag2 = false;
 	flag3 = false;
@@ -14,10 +21,10 @@ function init(){
 
 function start(){
 	cliques = 0;
-	gId("circulo1").style.background = "black";
-	gId("circulo2").style.background = "#C0C0C0";
-	gId("circulo3").style.background = "#C0C0C0";
-	gId("circulo4").style.background = "#C0C0C0";
+	gId("circulo1").style.background = config.cor.alvo;
+	gId("circulo2").style.background = config.cor.vizinho;
+	gId("circulo3").style.background = config.cor.vizinho;
+	gId("circulo4").style.background = config.cor.vizinho;
 	flag1 = true;
 }
 
@@ -27,8 +34,8 @@ function clique(){
 
 function muda1(){
 	if(flag1 == true){
-		gId("circulo1").style.background = "#C0C0C0";
-		gId("circulo4").style.background = "black";
+		gId("circulo1").style.background = config.cor.vizinho;
+		gId("circulo4").style.background = config.cor.alvo;
 		flag4 = true;
 		flag1 = false;
 	}
@@ -36,8 +43,8 @@ function muda1(){
 
 function muda2(){
 	if(flag2 == true){
-		gId("circulo2").style.background = "#C0C0C0";
-		gId("circulo3").style.background = "black";
+		gId("circulo2").style.background = config.cor.vizinho;
+		gId("circulo3").style.background = config.cor.alvo;
 		flag3 = true;
 		flag2 = false;
 	}
@@ -45,8 +52,8 @@ function muda2(){
 
 function muda3(){
 	if(flag3 == true){
-		gId("circulo3").style.background = "#C0C0C0";
-		gId("circulo1").style.background = "black";
+		gId("circulo3").style.background = config.cor.vizinho;
+		gId("circulo1").style.background = config.cor.alvo;
 		flag1 = true;
 		flag3 = false;
 	}
@@ -54,8 +61,8 @@ function muda3(){
 
 function muda4(){
 	if(flag4 == true){
-		gId("circulo4").style.background = "#C0C0C0";
-		gId("circulo2").style.background = "black";
+		gId("circulo4").style.background = config.cor.vizinho;
+		gId("circulo2").style.background = config.cor.alvo;
 		flag2 = true;
 		flag4 = false;
 	}
