@@ -6,8 +6,8 @@ function init(){
 
 	/* variveis de configuração, adicionar mais configurações. */
 	config = {
-		cor:{alvo:"#000", vizinho:"#C0C0C0"},
-		elemento: {quantidade:10}
+		'cor':{alvo:'#000', 'vizinho':'#C0C0C0'},
+		'circulos': {'quantidade':10, 'alvo-inicial':0}
 	}
 
 	/* FAZER: comentar o que são essas flags. */
@@ -21,11 +21,24 @@ function init(){
 
 function start(){
 	cliques = 0;
-	gId("circulo1").style.background = config.cor.alvo;
-	gId("circulo2").style.background = config.cor.vizinho;
-	gId("circulo3").style.background = config.cor.vizinho;
-	gId("circulo4").style.background = config.cor.vizinho;
+	alvoCirculos(0)	
 	flag1 = true;
+}
+
+
+function alvoCirculos(indiceAlvo){
+	let circulos = document.getElementsByClassName("circulo")
+	
+	for (let i = 0; i < circulos.length; i++) {
+		circulo = circulos[i]
+		
+		if(i == indiceAlvo){
+			circulo.style.background = config['cor']['alvo']
+		}else{
+			circulo.style.background = config['cor']['vizinho']
+		}
+	}		
+
 }
 
 function clique(){
