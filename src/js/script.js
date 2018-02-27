@@ -8,7 +8,11 @@ function init(){
 	config = {
 		'cor':{alvo:'#000', 'vizinho':'#C0C0C0'},
 		'circulos': {'quantidade':10, 'alvo-inicial':0}
+		'sequencia': ''
 	}
+
+	/* sequencial || aleatoria || extremo-aposto */
+	config['sequencia'] = 'sequencial';
 
 	/* FAZER: comentar o que são essas flags. */
 	flag1 = false;
@@ -21,7 +25,7 @@ function init(){
 
 function start(){
 	cliques = 0;
-	alvoCirculos(0)	
+	alvoCirculos(0)
 	flag1 = true;
 }
 
@@ -47,8 +51,7 @@ function clique(){
 
 function muda1(){
 	if(flag1 == true){
-		gId("circulo1").style.background = config.cor.vizinho;
-		gId("circulo4").style.background = config.cor.alvo;
+		alvoCirculos(3)
 		flag4 = true;
 		flag1 = false;
 	}
@@ -56,8 +59,7 @@ function muda1(){
 
 function muda2(){
 	if(flag2 == true){
-		gId("circulo2").style.background = config.cor.vizinho;
-		gId("circulo3").style.background = config.cor.alvo;
+		alvoCirculos(2)
 		flag3 = true;
 		flag2 = false;
 	}
@@ -65,8 +67,7 @@ function muda2(){
 
 function muda3(){
 	if(flag3 == true){
-		gId("circulo3").style.background = config.cor.vizinho;
-		gId("circulo1").style.background = config.cor.alvo;
+		alvoCirculos(0)
 		flag1 = true;
 		flag3 = false;
 	}
@@ -74,8 +75,7 @@ function muda3(){
 
 function muda4(){
 	if(flag4 == true){
-		gId("circulo4").style.background = config.cor.vizinho;
-		gId("circulo2").style.background = config.cor.alvo;
+		alvoCirculos(1)
 		flag2 = true;
 		flag4 = false;
 	}
