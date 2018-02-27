@@ -1,8 +1,8 @@
 /* iniciar o script após o carregamento da 'pagina'. */
-window.addEventListener('DOMContentLoaded', init)
+window.addEventListener('DOMContentLoaded', iniciar)
 
 
-function init(){
+function iniciar(){
 
 	/* variveis de configuração, adicionar mais configurações. */
 	config = {
@@ -26,9 +26,22 @@ function init(){
 	circulos = elementosCirculo()
 	atualizarCirculos()
 
+	adicionarEventos()
+
 	controleAlvos()
 }
 
+function adicionarEventos(){
+	let circulos = document.getElementsByClassName("circulo")
+	for (let i = 0; i < circulos.length; i++) {
+		circulos[i].addEventListener(
+			'click',
+			function(){ controleAlvos(i) }
+		);
+
+	}
+
+}
 
 function alvoCirculos(indiceAlvo){
 	for (let i = 0; i < circulos['quantidade']; i++) {			
@@ -40,11 +53,21 @@ function alvoCirculos(indiceAlvo){
 		}
 	}
 
-	atualizarCirculos()		
-	
+	atualizarCirculos()	
 }
 
-function controleAlvos(){
+function atualizarCirculos(){
+	let circulosDOM = document.getElementsByClassName("circulo")
+
+	for (let i = 0; i < circulos['quantidade']; i++) {
+		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
+	}
+}
+
+function controleAlvos(indice){
+
+	c('indice do elemento clicado: ' + indice)
+	c('verificar se o indice do elemento clicado é igual ao atual, se sim foi um clique correto')
 
 	if(config['sequencia'] == 'sequencial'){
 
@@ -55,6 +78,8 @@ function controleAlvos(){
 
 
 		alvoCirculos(estado['proximo-alvo'])
+
+		estado['alvo-atual'] = estado['proximo-alvo'];
 
 		/* sequencial */
 		estado['proximo-alvo'] ++;
@@ -77,22 +102,13 @@ function elementosCirculo(){
 
 	el['quantidade'] = document.getElementsByClassName("circulo").length
 	
-	for (let i = 0; i < circulos.length; i++) {		
+	for (let i = 0; i < circulos.length; i++) {	
 		el[i] = {}
 		el[i]['cor'] = circulos[i].style.backgroundColor || config['cor']['vizinho']
 	}
 
 	return el
 }
-
-function atualizarCirculos(){
-	let circulosDOM = document.getElementsByClassName("circulo")
-
-	for (let i = 0; i < circulos['quantidade']; i++) {
-		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
-	}
-}
-
 
 /* funções de conversão */
 
@@ -110,9 +126,7 @@ function RGBToHex(col){
 
 /* funções de redução, para diminuir codigo */
 
-function gId(id){
-	return document.getElementById(id)
-}
+function gId(id){return document.getElementById(id)}
 
 function c(mensagem){
 	if(config['ambiente'] == 'desenvolvimento'){
