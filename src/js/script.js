@@ -21,6 +21,7 @@ function iniciar(){
 	estado = {
 		'proximo-alvo':0,
 		'cliques': 0,
+		'alvo-atual': false,
 	}
 
 	circulos = elementosCirculo()
@@ -68,6 +69,9 @@ function controleAlvos(indice){
 
 	c('indice do elemento clicado: ' + indice)
 	c('verificar se o indice do elemento clicado é igual ao atual, se sim foi um clique correto')
+
+	c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+
 
 	if(config['sequencia'] == 'sequencial'){
 
