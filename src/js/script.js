@@ -6,13 +6,16 @@ function init(){
 
 	/* variveis de configuração, adicionar mais configurações. */
 	config = {
-		'cor':{alvo:'#000', 'vizinho':'#C0C0C0'},
-		'circulos': {'quantidade':10, 'alvo-inicial':0}
-		'sequencia': ''
+		'cor':{alvo:'#000000', 'vizinho':'#C0C0C0'},
+		'circulos': {'quantidade':10, 'alvo-inicial':0},
+		'sequencia': '',
 	}
 
-	/* sequencial || aleatoria || extremo-aposto */
+	/* config['sequencia'] = 'sequencial' || 'aleatoria' || 'extremo-oposto' */
 	config['sequencia'] = 'sequencial';
+
+
+	circulos = elementosCirculo()
 
 	/* FAZER: comentar o que são essas flags. */
 	flag1 = false;
@@ -25,24 +28,66 @@ function init(){
 
 function start(){
 	cliques = 0;
-	alvoCirculos(0)
+	alvoCirculos(0)	
 	flag1 = true;
 }
 
 
-function alvoCirculos(indiceAlvo){
-	let circulos = document.getElementsByClassName("circulo")
-	
-	for (let i = 0; i < circulos.length; i++) {
-		circulo = circulos[i]
+function alvoCirculos(indiceAlvo){		
+	for (let i = 0; i < circulos['tamanho']; i++) {			
 		
 		if(i == indiceAlvo){
-			circulo.style.background = config['cor']['alvo']
+			circulos[i]['cor'] = config['cor']['alvo']
 		}else{
-			circulo.style.background = config['cor']['vizinho']
+			circulos[i]['cor'] = config['cor']['vizinho']
 		}
-	}		
+	}
 
+	atualizarCirculos()		
+	
+}
+
+function controleAlvos(){
+	
+	/* renderizar alvos */
+	if(config['sequencia'] == 'sequencial'){
+
+		let circulos = document.getElementsByClassName("circulo")
+	
+		for (let i = 0; i < circulos.length; i++) {
+			let circulo = circulos[i]			
+			
+		}
+
+
+	}else if( config['sequencia'] == 'aleatoria' ){
+		c("ordem ainda não desenvolvida")
+	}else if( config['sequencia'] == 'extremo-oposto' ){
+		c("ordem ainda não desenvolvida")
+	}
+}
+
+function elementosCirculo(){
+	let el = {}
+
+	let circulos = document.getElementsByClassName("circulo")
+
+	el['tamanho'] = document.getElementsByClassName("circulo").length
+	
+	for (let i = 0; i < circulos.length; i++) {		
+		el[i] = {}
+		el[i]['cor'] = circulos[i].style.backgroundColor || config['cor']['vizinho']
+	}
+
+	return el
+}
+
+function atualizarCirculos(){
+	let circulosDOM = document.getElementsByClassName("circulo")
+
+	for (let i = 0; i < circulos['tamanho']; i++) {
+		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
+	}
 }
 
 function clique(){
@@ -79,6 +124,19 @@ function muda4(){
 		flag2 = true;
 		flag4 = false;
 	}
+}
+
+
+function RGBToHex(col){
+    if(col.charAt(0)=='r'){
+        col=col.replace('rgb(','').replace(')','').split(',');
+        let r=parseInt(col[0], 10).toString(16);
+        let g=parseInt(col[1], 10).toString(16);
+        let b=parseInt(col[2], 10).toString(16);
+        r=r.length==1?'0'+r:r; g=g.length==1?'0'+g:g; b=b.length==1?'0'+b:b;
+        let colHex='#'+r+g+b;
+        return colHex;
+    }
 }
 
 /* funções de redução, para diminuir codigo */
