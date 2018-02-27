@@ -16,27 +16,13 @@ function init(){
 
 	estado = {
 		'proximo-alvo':0,
+		'cliques': 0,
 	}
 
 	circulos = elementosCirculo()
 	atualizarCirculos()
 
-	/* FAZER: comentar o que são essas flags. */
-	flag1 = false;
-	flag2 = false;
-	flag3 = false;
-	flag4 = false;
-	
-	cliques = 0;
-
-
 	controleAlvos()
-}
-
-function start(){
-	cliques = 0;
-	alvoCirculos(0)
-	flag1 = true;
 }
 
 
@@ -54,7 +40,7 @@ function alvoCirculos(indiceAlvo){
 	
 }
 
-function controleAlvos(){	
+function controleAlvos(){
 
 	if(config['sequencia'] == 'sequencial'){
 
@@ -103,42 +89,8 @@ function atualizarCirculos(){
 	}
 }
 
-function clique(){
-	cliques++;
-}
 
-function muda1(){
-	if(flag1 == true){
-		alvoCirculos(3)
-		flag4 = true;
-		flag1 = false;
-	}
-}
-
-function muda2(){
-	if(flag2 == true){
-		alvoCirculos(2)
-		flag3 = true;
-		flag2 = false;
-	}
-}
-
-function muda3(){
-	if(flag3 == true){
-		alvoCirculos(0)
-		flag1 = true;
-		flag3 = false;
-	}
-}
-
-function muda4(){
-	if(flag4 == true){
-		alvoCirculos(1)
-		flag2 = true;
-		flag4 = false;
-	}
-}
-
+/* funções de conversão */
 
 function RGBToHex(col){
     if(col.charAt(0)=='r'){
