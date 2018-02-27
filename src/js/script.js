@@ -2,17 +2,21 @@
 window.addEventListener('DOMContentLoaded', init)
 
 
-function init(){	
+function init(){
 
 	/* variveis de configuração, adicionar mais configurações. */
 	config = {
 		'cor':{alvo:'#000000', 'vizinho':'#C0C0C0'},
 		'circulos': {'quantidade':10, 'alvo-inicial':0},
 		'sequencia': '',
+		'ambiente': '',
 	}
 	
 	/* config['sequencia'] = 'sequencial' || 'aleatoria' || 'extremo-oposto' */
-	config['sequencia'] = 'sequencial';
+	config['sequencia'] = 'sequencial'
+
+	/* config['ambiente'] = 'desenvolvimento' || 'homologacao' || 'producao' */
+	config['ambiente'] = 'desenvolvimento'
 
 	estado = {
 		'proximo-alvo':0,
@@ -111,5 +115,7 @@ function gId(id){
 }
 
 function c(mensagem){
-	console.log(mensagem)
+	if(config['ambiente'] == 'desenvolvimento'){
+		console.log(mensagem)
+	}	
 }
