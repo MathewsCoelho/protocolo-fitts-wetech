@@ -1,64 +1,18 @@
-.teste{
+.circulo{
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+
+	background: #C0C0C0;
+	width:150px;
+	height:150px;
+
+	margin: 20px 20px;
+}
+
+.fundo{
 	margin: 20px;
 	background-color: #00BFFF;
 	width: 1000px;
 	height: 300px;
-}
-
-.testes{
-	margin: 50px;
-}
-
-.teste1{
-background: #C0C0C0;
-width:150px;
-height:150px;
-margin: 50px 50px 50px 50px;
-}
-
-
-.teste1{
-border-radius:50%;
--moz-border-radius:50%;
--webkit-border-radius:50%;
-}
-
-.teste2{
-background: #C0C0C0;
-width:150px;
-height:150px;
-margin: 0 50px;
-}
-
-
-.teste2{
-border-radius:50%;
--moz-border-radius:50%;
--webkit-border-radius:50%;
-}
-.teste3{
-background: #C0C0C0;
-width:150px;
-height:150px;
-margin: 0 50px;
-}
-
-
-.teste3{
-border-radius:50%;
--moz-border-radius:50%;
--webkit-border-radius:50%;
-}
-.teste4{
-background: #C0C0C0;
-width:150px;
-height:150px;
-line-height: 150px;
-margin: 0 50px;
-}
-
-.teste4{
-border-radius:50%;
--moz-border-radius:50%;
--webkit-border-radius:50%;
 }
