@@ -10,12 +10,16 @@ function init(){
 		'circulos': {'quantidade':10, 'alvo-inicial':0},
 		'sequencia': '',
 	}
-
+	
 	/* config['sequencia'] = 'sequencial' || 'aleatoria' || 'extremo-oposto' */
 	config['sequencia'] = 'sequencial';
 
+	estado = {
+		'proximo-alvo':0,
+	}
 
 	circulos = elementosCirculo()
+	atualizarCirculos()
 
 	/* FAZER: comentar o que são essas flags. */
 	flag1 = false;
@@ -24,17 +28,20 @@ function init(){
 	flag4 = false;
 	
 	cliques = 0;
+
+
+	controleAlvos()
 }
 
 function start(){
 	cliques = 0;
-	alvoCirculos(0)	
+	alvoCirculos(0)
 	flag1 = true;
 }
 
 
-function alvoCirculos(indiceAlvo){		
-	for (let i = 0; i < circulos['tamanho']; i++) {			
+function alvoCirculos(indiceAlvo){
+	for (let i = 0; i < circulos['quantidade']; i++) {			
 		
 		if(i == indiceAlvo){
 			circulos[i]['cor'] = config['cor']['alvo']
@@ -47,22 +54,28 @@ function alvoCirculos(indiceAlvo){
 	
 }
 
-function controleAlvos(){
-	
-	/* renderizar alvos */
+function controleAlvos(){	
+
 	if(config['sequencia'] == 'sequencial'){
 
-		let circulos = document.getElementsByClassName("circulo")
-	
-		for (let i = 0; i < circulos.length; i++) {
-			let circulo = circulos[i]			
-			
-		}
+		c("ordem sequencial");	
+
+		if(estado['proximo-alvo'] >= circulos['quantidade'])
+			estado['proximo-alvo'] = 0
 
 
-	}else if( config['sequencia'] == 'aleatoria' ){
+		alvoCirculos(estado['proximo-alvo'])
+
+		/* sequencial */
+		estado['proximo-alvo'] ++;
+
+	}
+
+	else if( config['sequencia'] == 'aleatoria' ){
 		c("ordem ainda não desenvolvida")
-	}else if( config['sequencia'] == 'extremo-oposto' ){
+	}
+
+	else if( config['sequencia'] == 'extremo-oposto' ){
 		c("ordem ainda não desenvolvida")
 	}
 }
@@ -72,7 +85,7 @@ function elementosCirculo(){
 
 	let circulos = document.getElementsByClassName("circulo")
 
-	el['tamanho'] = document.getElementsByClassName("circulo").length
+	el['quantidade'] = document.getElementsByClassName("circulo").length
 	
 	for (let i = 0; i < circulos.length; i++) {		
 		el[i] = {}
@@ -85,7 +98,7 @@ function elementosCirculo(){
 function atualizarCirculos(){
 	let circulosDOM = document.getElementsByClassName("circulo")
 
-	for (let i = 0; i < circulos['tamanho']; i++) {
+	for (let i = 0; i < circulos['quantidade']; i++) {
 		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
 	}
 }
