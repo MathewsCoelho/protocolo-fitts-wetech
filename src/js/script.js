@@ -6,7 +6,14 @@ function iniciar(){
 	/* variveis de configuração, adicionar mais configurações. */
 	config = {
 		'cor':{alvo:'#000000', 'vizinho':'#C0C0C0'},
-		'circulos': {'quantidade':10, 'alvo-inicial':0},
+		'circulos': {
+			'quantidade':10, 
+			'alvo-inicial':0, 
+			'quantidade-minima':'4',
+			'quantidade-maxima':'20',
+			'width': '120px',
+			'height': '120px',
+		},
 		'sequencia': '',
 		'ambiente': '',
 	}
@@ -29,6 +36,10 @@ function iniciar(){
 	adicionarEventos()
 
 	controleAlvos()
+}
+
+function iniciarTeste(){	
+	adicionarCirculos(config['circulos']['quantidade'], document.getElementById("fundo"))
 }
 
 function adicionarEventos(){
@@ -59,11 +70,20 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			let circulo = document.createElement("div");
 			let posicoesCirculos = coordElements(quantidadeCirculos, 300, 500, 500);
 
-			circulo.setAttribute("style", "position: absolute; left:" + posicoesCirculos[i].x + "px; top: "+ posicoesCirculos[i].y + "px;");
+			circulo.setAttribute("style", 
+				"position: absolute;" +
+				"left:" + posicoesCirculos[i].x + "px;"+
+				"top: "+ posicoesCirculos[i].y + "px;"+
+				"width: " + config['circulos']['width'] + ";" +
+				"height: " + config['circulos']['height'] + ";" +
+				"background: " + config['cor']['vizinho'] + ";"
+			);			
 
 			circulo.className = "circulo";
 
 			saida.appendChild(circulo);
+
+			adicionarEventos()			
 		}
 	}
 }
