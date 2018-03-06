@@ -11,8 +11,8 @@ function iniciar(){
 			'alvo-inicial':0, 
 			'quantidade-minima':'4',
 			'quantidade-maxima':'20',
-			'width': '120px',
-			'height': '120px',
+			'width': '80px',
+			'height': '80px',
 		},
 		'sequencia': '',
 		'ambiente': '',
@@ -30,16 +30,21 @@ function iniciar(){
 		'alvo-atual': false,
 	}
 
-	circulos = elementosCirculo()
-	atualizarCirculos()
+}
+
+function iniciarApp(){	
+	adicionarCirculos(
+		config['circulos']['quantidade'], 
+		document.getElementById("fundo")
+	)
 
 	adicionarEventos()
 
-	controleAlvos()
-}
+	circulos = elementosCirculo()
 
-function iniciarTeste(){	
-	adicionarCirculos(config['circulos']['quantidade'], document.getElementById("fundo"))
+	atualizarCirculos()
+
+	controleAlvos()
 }
 
 function adicionarEventos(){
@@ -51,7 +56,6 @@ function adicionarEventos(){
 		);
 
 	}
-
 }
 
 /* FUNÇÃO MATHEUS */
@@ -68,7 +72,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 	else{
 		for(let i = 0; i < quantidadeCirculos; i++){
 			let circulo = document.createElement("div");
-			let posicoesCirculos = coordElements(quantidadeCirculos, 300, 500, 500);
+			let posicoesCirculos = coordElements(quantidadeCirculos, 200, 200, 200);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
@@ -81,10 +85,8 @@ function adicionarCirculos(quantidadeCirculos, saida){
 
 			circulo.className = "circulo";
 
-			saida.appendChild(circulo);
-
-			adicionarEventos()			
-		}
+			saida.appendChild(circulo);			
+		}		
 	}
 }
 
