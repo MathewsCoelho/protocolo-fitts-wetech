@@ -1,11 +1,6 @@
 /* iniciar o script após o carregamento da 'pagina'. */
 window.addEventListener('DOMContentLoaded', iniciar)
 
-//let botao = document.getElementById("adicionar");
-
-//botao.addEventListener('click', adicionarCirculos);
-
-
 function iniciar(){
 
 	/* variveis de configuração, adicionar mais configurações. */
@@ -15,7 +10,6 @@ function iniciar(){
 		'sequencia': '',
 		'ambiente': '',
 	}
-
 	
 	/* config['sequencia'] = 'sequencial' || 'aleatoria' || 'extremo-oposto' */
 	config['sequencia'] = 'sequencial'
@@ -35,10 +29,6 @@ function iniciar(){
 	adicionarEventos()
 
 	controleAlvos()
-
-
-	/*eventos após carregamento da pagina */
-	//document.getElementById("adicionar").addEventListener('click', adicionarCirculos)	
 }
 
 function adicionarEventos(){
@@ -77,7 +67,6 @@ function adicionarCirculos(quantidadeCirculos, saida){
 		}
 	}
 }
-
 
 function alvoCirculos(indiceAlvo){
 	for (let i = 0; i < circulos['quantidade']; i++) {			
