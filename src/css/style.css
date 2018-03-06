@@ -1,0 +1,18 @@
+.circulo{
+	border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+
+	background: #C0C0C0;
+	width:200px;
+	height:200px;
+
+	margin: 20px 20px;
+}
+
+.fundo{
+	margin: 20px;
+	background-color: #00BFFF;
+	width: 1000px;
+	height: 300px;
+}
