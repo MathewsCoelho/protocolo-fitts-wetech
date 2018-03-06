@@ -5,7 +5,7 @@
 
 	background: #C0C0C0;	
 
-	margin: 20px 20px;
+	/*margin: 20px 20px;*/
 }
 
 .fundo{
@@ -13,4 +13,19 @@
 	background-color: #00BFFF;
 	width: 1000px;
 	height: 300px;*/
+}
+
+body{
+	margin:0;
+	padding: 0;
+}
+
+.menu{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 15px;
+	background-color: #4d82de;
+	color: #fff;
+	cursor: pointer;
 }

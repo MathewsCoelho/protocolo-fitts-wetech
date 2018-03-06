@@ -30,6 +30,12 @@ function iniciar(){
 		'alvo-atual': false,
 	}
 
+
+	gId('interface-iniciar').addEventListener('click', interfaceConfig)
+
+	gId('menu').addEventListener('click', function(){ gId('slot-interface-config').style.display = 'block'; })
+
+
 }
 
 function iniciarApp(){	
@@ -45,6 +51,24 @@ function iniciarApp(){
 	atualizarCirculos()
 
 	controleAlvos()
+}
+
+function interfaceConfig(){
+	config['cor']['alvo'] = gId('cor-alvo').value
+	config['cor']['vizinho'] = gId('cor-vizinho').value
+
+	config['circulos']['quantidade'] = parseInt(gId('quantidade').value)
+	config['circulos']['alvo-inicial'] = parseInt(gId('alvo-inicial').value)
+	config['circulos']['quantidade-minima'] = parseInt(gId('quantidade-minima').value)
+	config['circulos']['quantidade-maxima'] = parseInt(gId('quantidade-maxima').value)
+	config['circulos']['width'] = parseInt(gId('width').value) + "px";
+	config['circulos']['height'] = parseInt(gId('height').value) + "px";
+
+	config['sequencia'] = gId('sequencia').value
+
+	gId('slot-interface-config').style.display = 'none';
+
+	iniciarApp()
 }
 
 function adicionarEventos(){
@@ -123,13 +147,14 @@ function controleAlvos(indice){
 
 		c("ordem sequencial");	
 
-		if(estado['proximo-alvo'] >= circulos['quantidade'])
+		if(estado['proximo-alvo'] >= circulos['quantidade']){
 			estado['proximo-alvo'] = 0
-
+			c('fechou o o ciclo')
+		}
 
 		alvoCirculos(estado['proximo-alvo'])
 
-		estado['alvo-atual'] = estado['proximo-alvo'];
+		estado['alvo-atual'] = estado['proximo-alvo']
 
 		/* sequencial */
 		estado['proximo-alvo'] ++;

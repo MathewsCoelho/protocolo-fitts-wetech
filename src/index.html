@@ -9,7 +9,7 @@
 <body>
 	<div class="fundo" id="fundo"></div>
 
-	<div class="slot-interface-config" style="display::;">
+	<div class="slot-interface-config" id="slot-interface-config">
 		<div class="row">
 
 			<table>
@@ -37,32 +37,32 @@
 
 				<tr>				
 					<td>quantidade:</th>
-					<td><input type="text" id="quantidade" value="10" /></td>
+					<td><input type="number" id="quantidade" value="10" /></td>
 				</tr>
 
 				<tr>				
 					<td>alvo-inicial:</th>
-					<td><input type="text" id="alvo-inicial" value="0" /></td>
+					<td><input type="number" id="alvo-inicial" value="0" /></td>
 				</tr>
 
 				<tr>				
 					<td>quantidade-minima:</th>
-					<td><input type="text" id="quantidade-minima" value="4" /></td>
+					<td><input type="number" id="quantidade-minima" value="4" /></td>
 				</tr>
 
 				<tr>				
 					<td>quantidade-maxima:</th>
-					<td><input type="text" id="quantidade-maxima" value="20" /></td>
+					<td><input type="number" id="quantidade-maxima" value="20" /></td>
 				</tr>
 
 				<tr>				
 					<td>width:</th>
-					<td><input type="text" id="width" value="80px" /></td>
+					<td><input type="number" id="width" value="80" /></td>
 				</tr>				
 
 				<tr>				
 					<td>height:</th>
-					<td><input type="text" id="height" value="80px" /></td>
+					<td><input type="number" id="height" value="80" /></td>
 				</tr>
 
 				<tr>				
@@ -71,9 +71,14 @@
 				</tr>				
 				
 			</table>
+
+			<button id="interface-iniciar">Configurar/Iniciar</button>			
 					
 		</div>
 	</div>	
+
+	<div class="menu" id="menu">menu</div>
+
 </body>
 </html>
 
