@@ -41,14 +41,17 @@ function iniciar(){
 function iniciarApp(){	
 	adicionarCirculos(
 		config['circulos']['quantidade'], 
+
 		document.getElementById("fundo")
 	)
 
-	adicionarEventos()
+	
 
 	circulos = elementosCirculo()
 
 	atualizarCirculos()
+
+	adicionarEventos()
 
 	controleAlvos()
 }
@@ -73,11 +76,15 @@ function interfaceConfig(){
 
 function adicionarEventos(){
 	let circulos = document.getElementsByClassName("circulo")
+
 	for (let i = 0; i < circulos.length; i++) {
+
 		circulos[i].addEventListener(
 			'click',
 			function(){ controleAlvos(i) }
 		);
+
+
 
 	}
 }
@@ -90,7 +97,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 
 	c('quantidade elementos: ' + quantidadeCirculos);
 
-	if(quantidadeCirculos <= 0 || quantidadeCirculos > 20){
+	if(quantidadeCirculos < 4 || quantidadeCirculos > 20){
 		c("Quantidade informada está fora dos limites.");
 	}
 	else{
@@ -108,6 +115,8 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			);			
 
 			circulo.className = "circulo";
+
+			circulo.setAttribute("id", i);
 
 			saida.appendChild(circulo);			
 		}		
@@ -134,9 +143,14 @@ function atualizarCirculos(){
 		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
 	}
 }
+/* comandos para salvar tempo e milimetros
+	var antes = Date.now();
+	var duracao = Date.now() - antes;
+*/
 
 function controleAlvos(indice){
-
+	var antes = Date.now();
+	var duracao = Date.now() - antes;
 	c('indice do elemento clicado: ' + indice)
 	c('verificar se o indice do elemento clicado é igual ao atual, se sim foi um clique correto')
 
@@ -149,7 +163,7 @@ function controleAlvos(indice){
 
 		if(estado['proximo-alvo'] >= circulos['quantidade']){
 			estado['proximo-alvo'] = 0
-			c('fechou o o ciclo')
+			c('fechou o ciclo')
 		}
 
 		alvoCirculos(estado['proximo-alvo'])
@@ -163,10 +177,26 @@ function controleAlvos(indice){
 
 	else if( config['sequencia'] == 'aleatoria' ){
 		c("ordem ainda não desenvolvida")
+
 	}
 
 	else if( config['sequencia'] == 'extremo-oposto' ){
-		c("ordem ainda não desenvolvida")
+
+		alvoCirculos(estado['proximo-alvo'])
+
+		estado['alvo-atual'] = estado['proximo-alvo']
+
+		estado['proximo-alvo'] = parseInt( config['circulos']['quantidade'] / 2 ) + estado['alvo-atual'] + 1
+
+		if(estado['proximo-alvo']>config['circulos']['quantidade'] - 1){
+			if(circulos['quantidade'] % 2 == 0){
+				estado['proximo-alvo'] = estado['proximo-alvo'] - config['circulos']['quantidade'] -1
+			}
+			else 
+				estado['proximo-alvo'] = estado['proximo-alvo'] - config['circulos']['quantidade'] 
+		}	
+
+		c("ordem extremo-oposto : " + estado['alvo-atual'])
 	}
 }
 
@@ -256,9 +286,9 @@ function coordElements (quantidadeElementos, raio, lar, alt ) {
 		//------ fim do sistema
 		d = Math.pow(x,2) + Math.pow(y,2); // distancia considerando ponto inicial (0,0);
 		d = Math.sqrt(d);
-		c("Angulo: "+angulo+" x: " + x + " y: "+y);
-		c("Coeficiente: "+coeficiente);
-		c("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
+		//c("Angulo: "+angulo+" x: " + x + " y: "+y);
+		//c("Coeficiente: "+coeficiente);
+		//c("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
 	 
 		x+=lar; // Adaptando para pontos nao nulos
 		y+=alt;
