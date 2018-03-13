@@ -35,7 +35,6 @@ function iniciar(){
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
 	gId('menu').addEventListener('click', function(){ gId('slot-interface-config').style.display = 'block'; })
-
 }
 
 function iniciarApp(){	
@@ -46,6 +45,11 @@ function iniciarApp(){
 	)
 
 	circulos = elementosCirculo()
+
+	fundo.addEventListener(
+		'click',
+		function(){ controleAlvos("div-fundo") }
+	);
 
 	atualizarCirculos()
 
@@ -91,10 +95,7 @@ function adicionarEventos(){
 			function(){ controleAlvos(i) }
 		);
 	}
-		fundo.addEventListener(
-			'click',
-			function(){ controleAlvos("div-fundo") }
-		);
+
 }
 
 /* FUNÇÃO MATHEUS */
