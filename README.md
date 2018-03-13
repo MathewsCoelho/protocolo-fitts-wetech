@@ -13,17 +13,13 @@
 
 - [ ] 5: Som de feedback do erro e acerto.
 
-- [ ] 6: Processar o Log de Acertos e Erros para gerar um tabela com os resultados.
+- [ ] 6: Processar o Log de Acertos e Erros para gerar os resultados.
+<br/> Na primeira versão pode gerar o resultado no formato JSON em um input, o qual vai ser copiado e colado em um  [conversor de JSON para excel](http://www.convertcsv.com/json-to-csv.htm). Olhar as "Configurações sugeridas".
 
-- [ ] 7: Baixar, Exportar a tabela de resultados.
-<br/>(JQuery tem um opção de importar um table em html para um excel)
-<br/>(Outra opção é printar o JSON com resultado e usar um conversor: http://www.convertcsv.com/json-to-csv.htm)
-
-- [ ] 8: Centralizar a janela do teste.
-
-- [ ] 9: Estilizar o menu de configuração.
-
-
+- [ ] 7: Estilização:
+- [ ] 7.1: Ao chamar o menu escoder o teste.
+- [ ] 7.2: Centralizar a janela do teste.
+- [ ] 7.3: Estilizar o menu de configuração.
 
 <img src="readme/protocolo-medidas.png"  width="450"/>
 
@@ -31,16 +27,15 @@
 
 ## Configurações sugeridas
 D = 100, 300
-
-A = 30, 60, 100
-
-Q = 13
+<br/>A = 30, 60, 100
+<br/>Q = 13
 
 Quantidade de fases do teste: nD * nA
 
 Formato do resultado (resultados exemplos)
 
-TM = Tempo Médio
+Legendas:
+<br/>TM = Tempo Médio
 
 | Fase            | Acertos | Acertos % | TM Acertos | Erros | Erros % | TM Erros | TM |
 | --------------- | ------- | --------- | ------------------- | ----- | ------- | ----------------- | ----------- |
