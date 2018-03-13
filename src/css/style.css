@@ -9,6 +9,12 @@
 .fundo{	
 }
 
+.teste{
+	height: 600px;
+	width: 600px;
+	background: black;
+}
+
 body{
 	margin:0;
 	padding: 0;

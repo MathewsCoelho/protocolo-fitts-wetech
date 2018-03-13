@@ -30,11 +30,13 @@ function iniciar(){
 		'alvo-atual': false,
 	}
 
+	controle = []
+
+	tempos = []
 
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
 	gId('menu').addEventListener('click', function(){ gId('slot-interface-config').style.display = 'block'; })
-
 
 }
 
@@ -44,8 +46,6 @@ function iniciarApp(){
 
 		document.getElementById("fundo")
 	)
-
-	
 
 	circulos = elementosCirculo()
 
@@ -76,17 +76,17 @@ function interfaceConfig(){
 
 function adicionarEventos(){
 	let circulos = document.getElementsByClassName("circulo")
-
+		let fundo = document.getElementById("teste");
 	for (let i = 0; i < circulos.length; i++) {
-
 		circulos[i].addEventListener(
 			'click',
 			function(){ controleAlvos(i) }
 		);
-
-
-
 	}
+		fundo.addEventListener(
+			'click',
+			function(){ controleAlvos("div-fundo") }
+		);
 }
 
 /* FUNÇÃO MATHEUS */
@@ -94,7 +94,11 @@ function adicionarEventos(){
 /* saida => o html/div onde os circulos vão ser renderizados*/
 /* exemplo de chamda da função: adicionarCirculos(12, document.getElementById("fundo")) */
 function adicionarCirculos(quantidadeCirculos, saida){
-
+	let fundo = document.createElement("div");
+	fundo.className = "teste";
+	fundo.id = "teste";
+	
+	saida.appendChild(fundo);
 	c('quantidade elementos: ' + quantidadeCirculos);
 
 	if(quantidadeCirculos < 4 || quantidadeCirculos > 20){
@@ -147,15 +151,16 @@ function atualizarCirculos(){
 	var antes = Date.now();
 	var duracao = Date.now() - antes;
 */
-
+var antes = Date.now();
 function controleAlvos(indice){
-	var antes = Date.now();
-	var duracao = Date.now() - antes;
 	c('indice do elemento clicado: ' + indice)
 	c('verificar se o indice do elemento clicado é igual ao atual, se sim foi um clique correto')
 
 	c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
-
+	if(indice == estado['alvo-atual'])
+		controle[controle.length] = {"status":'acerto', "tempo": Date.now()}
+	else
+		controle[controle.length] = {"status":'erro', "tempo": Date.now()}
 
 	if(config['sequencia'] == 'sequencial'){
 
