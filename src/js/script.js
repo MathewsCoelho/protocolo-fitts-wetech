@@ -63,6 +63,8 @@ function interfaceConfig(){
 
 	config['circulos']['width'] = config['circulos']['height'] = parseInt(gId('diametro-alvo').value) + "px";
 
+	config['circulos']['diametro-area'] = parseInt(gId('diametro-area').value);
+
 	/* 
 		Configurações não usadas. 
 
@@ -113,7 +115,10 @@ function adicionarCirculos(quantidadeCirculos, saida){
 	else{
 		for(let i = 0; i < quantidadeCirculos; i++){
 			let circulo = document.createElement("div");
-			let posicoesCirculos = coordElements(quantidadeCirculos, 200, 200, 200);
+			/* 									(quantidadeElementos, raio, lar, alt ) */
+
+			let raio = config['circulos']['diametro-area'] / 2;
+			let posicoesCirculos = coordElements(quantidadeCirculos, raio, raio, raio);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
