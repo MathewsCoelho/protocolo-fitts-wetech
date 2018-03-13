@@ -8,9 +8,7 @@ function iniciar(){
 		'cor':{alvo:'#000000', 'vizinho':'#C0C0C0'},
 		'circulos': {
 			'quantidade':10, 
-			'alvo-inicial':0, 
-			'quantidade-minima':'4',
-			'quantidade-maxima':'20',
+			'alvo-inicial':0,			
 			'width': '80px',
 			'height': '80px',
 		},
@@ -61,11 +59,19 @@ function interfaceConfig(){
 	config['cor']['vizinho'] = gId('cor-vizinho').value
 
 	config['circulos']['quantidade'] = parseInt(gId('quantidade').value)
-	config['circulos']['alvo-inicial'] = parseInt(gId('alvo-inicial').value)
-	config['circulos']['quantidade-minima'] = parseInt(gId('quantidade-minima').value)
-	config['circulos']['quantidade-maxima'] = parseInt(gId('quantidade-maxima').value)
-	config['circulos']['width'] = parseInt(gId('width').value) + "px";
-	config['circulos']['height'] = parseInt(gId('height').value) + "px";
+	config['circulos']['alvo-inicial'] = parseInt(gId('alvo-inicial').value)		
+
+	config['circulos']['width'] = config['circulos']['height'] = parseInt(gId('diametro-alvo').value) + "px";
+
+	/* 
+		Configurações não usadas. 
+
+		config['circulos']['width'] = parseInt(gId('width').value) + "px";
+		config['circulos']['height'] = parseInt(gId('height').value) + "px";
+		
+		config['circulos']['quantidade-minima'] = parseInt(gId('quantidade-minima').value)
+		config['circulos']['quantidade-maxima'] = parseInt(gId('quantidade-maxima').value)
+	*/
 
 	config['sequencia'] = gId('sequencia').value
 
