@@ -11,7 +11,9 @@
 
 - [x] 4: Configuração do diamtro do alvo (A) e diametro da área (D), ver imagem 1.
 
-- [ ] 5: Gerar n fases de testes, diacordo com (A) e (D). A quantidade de testes vai ser o numero de (A)s vezes o numero de (D)s. O log de resultados deve capturar todos os resultados.
+- [ ] 5: Configurar para que o circulo alvo fique em cima dos vizinhos quando estiverem sobre-apostos. Sugestão usar z-index
+
+- [ ] 6: Gerar n fases de testes, diacordo com (A) e (D). A quantidade de testes vai ser o numero de (A)s vezes o numero de (D)s. O log de resultados deve capturar todos os resultados.
 
 Estado atual: 
 <br/>Diametro alvos (A): [ 100 ]
@@ -22,15 +24,16 @@ Como deve ser:
 <br/>Diametro área (D): [ 50, 100, 300 ]
 <br/>P.S: os valores acima são exemplos, com o exemplo acima teria 15 fases de testes.
 
-- [ ] 6: Processar o Log de Acertos e Erros para gerar os resultados.
+- [ ] 7: Processar o Log de Acertos e Erros para gerar os resultados.
 <br/> Na primeira versão pode gerar o resultado no formato JSON em um input, o qual vai ser copiado e colado em um  [conversor de JSON para excel](http://www.convertcsv.com/json-to-csv.htm). Olhar as "Configurações sugeridas".
 
-- [ ] 7: Estilização:
-- [ ] 7.1: Ao chamar o menu escoder o teste.
-- [ ] 7.2: Centralizar a janela do teste.
-- [ ] 7.3: Estilizar o menu de configuração.
+- [ ] 8: Estilização:
+- [ ] 8.1: Seguir o padrão de estilização dos alvos e fundo do protocolo Fiits original: https://imgur.com/a/xeiuD.
+- [ ] 8.1: Ao chamar o menu escoder o teste.
+- [ ] 8.2: Centralizar a janela do teste.
+- [ ] 8.3: Estilizar o menu de configuração.
 
-- [ ] 8: Som de feedback do erro e acerto.
+- [ ] 9: Som de feedback do erro e acerto.
 
 <img src="readme/protocolo-medidas.png"  width="450"/>
 
