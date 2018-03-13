@@ -16,10 +16,8 @@
 - [ ] 6: Processar o Log de Acertos e Erros para gerar um tabela com os resultados.
 
 - [ ] 7: Baixar, Exportar a tabela de resultados.
-
-(JQuery tem um opção de importar um table em html para um excel)
-
-(Outra opção é printar o JSON com resultado e usar um conversor: http://www.convertcsv.com/json-to-csv.htm)
+<br/>(JQuery tem um opção de importar um table em html para um excel)
+<br/>(Outra opção é printar o JSON com resultado e usar um conversor: http://www.convertcsv.com/json-to-csv.htm)
 
 - [ ] 8: Centralizar a janela do teste.
 
@@ -42,11 +40,11 @@ Quantidade de fases do teste: nD * nA
 
 Formato do resultado (resultados exemplos)
 
-| Fase  | Acertos | Tempo medio Acertos | Erros | Tempo medio Erros
-| ----- | ------- | ------------------- | ----- | ----------------- |
-| A=30, D=100  | 10 | 1300ms | 3 | 1400ms |
-| A=30, D=300  | 10 | 1600ms | 3 | 1200ms |
-| A=60, D=100  | 9 | 2300ms | 4 | 1300ms |
-| A=60, D=300  | 11 | 1530ms | 2 | 1600ms |
-| A=100, D=100  | 12 | 2900ms | 1 | 2400ms |
-| A=100, D=300  | 8 | 5600ms | 5 | 3400ms |
+| Fase            | Acertos | Acertos % | Tempo medio Acertos | Erros | Erros % | Tempo medio Erros |
+| --------------- | ------- | --------- | ------------------- | ----- | ------- | ----------------- |
+| A=30, D=100     | 10      | 90%       | 1300ms              | 3     | 10%     | 1400ms  |
+| A=30, D=300     | 10      | 90%       | 1600ms              | 3     | 10%     | 1200ms  |
+| A=60, D=100     | 9       | 87%       | 2300ms              | 4     | 13%     | 1300ms  |
+| A=60, D=300     | 11      | 93%       | 1530ms              | 2     | 7%      | 1600ms  |
+| A=100, D=100    | 12      | 98%       | 2900ms              | 1     | 2%      | 2400ms  |
+| A=100, D=300    | 8       | 70%       | 5600ms              | 5     | 30%     | 3400ms  |
