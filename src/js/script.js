@@ -46,16 +46,12 @@ function iniciarApp(){
 
 	circulos = elementosCirculo()
 
-	fundo.addEventListener(
-		'click',
-		function(){ controleAlvos("div-fundo") }
-	);
-
 	atualizarCirculos()
 
 	adicionarEventos()
+	
+	controleAlvos("iniciar")
 
-	controleAlvos()
 }
 
 function interfaceConfig(){
@@ -95,6 +91,10 @@ function adicionarEventos(){
 			function(){ controleAlvos(i) }
 		);
 	}
+		fundo.addEventListener(
+		'click',
+		function(){ controleAlvos("div-fundo") }
+	);
 
 }
 
@@ -108,7 +108,6 @@ function adicionarCirculos(quantidadeCirculos, saida){
 	fundo.id = "teste";
 	
 	saida.appendChild(fundo);
-	c('quantidade elementos: ' + quantidadeCirculos);
 
 	if(quantidadeCirculos < 4 || quantidadeCirculos > 20){
 		c("Quantidade informada está fora dos limites.");
@@ -140,6 +139,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 }
 
 function alvoCirculos(indiceAlvo){
+	subirCirculos(indiceAlvo)
 	for (let i = 0; i < circulos['quantidade']; i++) {			
 		
 		if(i == indiceAlvo){
@@ -151,6 +151,7 @@ function alvoCirculos(indiceAlvo){
 
 	atualizarCirculos()	
 }
+
 
 function atualizarCirculos(){
 	let circulosDOM = document.getElementsByClassName("circulo")
@@ -165,14 +166,22 @@ function atualizarCirculos(){
 */
 var antes = Date.now();
 function controleAlvos(indice){
-	c('indice do elemento clicado: ' + indice)
-	c('verificar se o indice do elemento clicado é igual ao atual, se sim foi um clique correto')
-
-	c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
-	if(indice == estado['alvo-atual'])
+	if(indice == estado['alvo-atual']){
 		controle[controle.length] = {"status":'acerto', "tempo": Date.now()}
-	else
+		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+	}
+	else if(indice == "iniciar")
+		c("Teste iniciado:")
+	else{
+		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
 		controle[controle.length] = {"status":'erro', "tempo": Date.now()}
+	}
+
+	condicao = (config['circulos']['quantidade'] - 1) / 2
+	if(estado['alvo-atual'] == condicao){
+		c("teste encerrado")
+		finalizarTeste()
+	}
 
 	if(config['sequencia'] == 'sequencial'){
 
@@ -187,9 +196,7 @@ function controleAlvos(indice){
 
 		estado['alvo-atual'] = estado['proximo-alvo']
 
-		/* sequencial */
 		estado['proximo-alvo'] ++;
-
 	}
 
 	else if( config['sequencia'] == 'aleatoria' ){
@@ -202,18 +209,17 @@ function controleAlvos(indice){
 		alvoCirculos(estado['proximo-alvo'])
 
 		estado['alvo-atual'] = estado['proximo-alvo']
-
+		
 		estado['proximo-alvo'] = parseInt( config['circulos']['quantidade'] / 2 ) + estado['alvo-atual'] + 1
 
 		if(estado['proximo-alvo']>config['circulos']['quantidade'] - 1){
 			if(circulos['quantidade'] % 2 == 0){
 				estado['proximo-alvo'] = estado['proximo-alvo'] - config['circulos']['quantidade'] -1
 			}
-			else 
+			else {
 				estado['proximo-alvo'] = estado['proximo-alvo'] - config['circulos']['quantidade'] 
+			}
 		}	
-
-		c("ordem extremo-oposto : " + estado['alvo-atual'])
 	}
 }
 
@@ -230,6 +236,25 @@ function elementosCirculo(){
 	}
 
 	return el
+}
+
+function finalizarTeste(){
+	let caixa = gId("caixa")
+	let aviso = gId("aviso")
+	let init = gId("init")
+	aviso.setAttribute("style", "display:block;")
+	init.setAttribute("style", "display:block;")
+	caixa.setAttribute("style", "display: block;")
+	var t = document.createTextNode(JSON.stringify(controle)) 
+	caixa.appendChild(t);
+	gId("fundo").remove(); 
+}
+
+function subirCirculos(indice){
+	for(let i = 0; i < config['circulos']['quantidade']; i++){
+		gId(i).style.zIndex = "1";
+	}
+	gId(indice).style.zIndex = "2";
 }
 
 /* funções de conversão */

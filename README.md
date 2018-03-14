@@ -11,7 +11,7 @@
 
 - [x] 4: Configuração do diamtro do alvo (A) e diametro da área (D), ver imagem 1.
 
-- [ ] 5: Configurar para que o circulo alvo fique em cima dos vizinhos quando estiverem sobre-apostos. Sugestão usar z-index, exemplo:  gId('0').style.zIndex = "1"; .
+- [x] 5: Configurar para que o circulo alvo fique em cima dos vizinhos quando estiverem sobre-apostos. Sugestão usar z-index, exemplo:  gId('0').style.zIndex = "1"; .
 
 - [ ] 6: Gerar n fases de testes, diacordo com (A) e (D). A quantidade de testes vai ser o numero de (A)s vezes o numero de (D)s. O log de resultados deve capturar todos os resultados.
 
@@ -34,6 +34,7 @@ Como deve ser:
 - [ ] 8.3: Estilizar o menu de configuração.
 
 - [ ] 9: Som de feedback do erro e acerto.
+- [x] 10: Gerar resultado em cada fase.
 
 <img src="readme/protocolo-medidas.png"  width="450"/>
 

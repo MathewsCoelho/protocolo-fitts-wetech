@@ -26,7 +26,7 @@
 
 				<tr>
 					<td>Cor vizinho:</td>
-					<td><input type="text" id="cor-vizinho" value="#C0C0C0" /></td>
+					<td><input type="text" id="cor-vizinho" value="#FFF" /></td>
 				</tr>
 
 
@@ -69,20 +69,6 @@
 					<td><input type="number" id="diametro-area" value="300" /></td>
 				</tr>
 
-				<!-- 
-					Configrações não usadas.
-
-				<tr>				
-					<td>width:</th>
-					<td><input type="number" id="width" value="80" /></td>
-				</tr>				
-
-				<tr>				
-					<td>height:</th>
-					<td><input type="number" id="height" value="80" /></td>
-				</tr>
-				-->
-
 				<tr>				
 					<td>Sequencia:</th>
 					<td><input type="text" id="sequencia" value="extremo-oposto" disabled /></td>
@@ -91,9 +77,14 @@
 			</table>
 
 			<button id="interface-iniciar">Configurar/Iniciar</button>			
-					
 		</div>
 	</div>	
+	<div>
+		<p style="display: none;" id="aviso"> Resultados do teste, colar no site a seguir para ver os resultados: http://www.convertcsv.com/json-to-csv.htm </p>
+		<textarea rows="20" cols="50" style="display: none;" id="caixa"></textarea>
+		<button style="display: none;" id="init"> Iniciar outro teste </button>
+
+	</div>
 
 	<div class="menu" id="menu">menu</div>
 

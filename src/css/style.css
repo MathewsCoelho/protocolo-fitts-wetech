@@ -2,6 +2,9 @@
 	border-radius:50%;
 	-moz-border-radius:50%;
 	-webkit-border-radius:50%;
+   border-width: 1px;
+    border-style: solid;
+    border-color: black;
 
 	background: #C0C0C0;	
 }
@@ -12,7 +15,7 @@
 .teste{
 	height: 600px;
 	width: 600px;
-	background: black;
+	background: #C0C0C0;
 }
 
 body{
