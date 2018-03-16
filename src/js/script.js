@@ -35,7 +35,12 @@ function iniciar(){
 
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
-	gId('menu').addEventListener('click', function(){ gId('slot-interface-config').style.display = 'block'; })
+	gId('menu').addEventListener('click', function(){ 
+		gId('slot-interface-config').style.display = 'block'; 
+		gId('caixa').style.display = 'none';
+		gId('aviso').style.display = 'none';
+		gId('init').style.display = 'none';
+	})
 }
 
 function iniciarApp(){	
@@ -105,11 +110,17 @@ function adicionarEventos(){
 /* saida => o html/div onde os circulos vão ser renderizados*/
 /* exemplo de chamda da função: adicionarCirculos(12, document.getElementById("fundo")) */
 function adicionarCirculos(quantidadeCirculos, saida){
-	let fundo = document.createElement("div");
-	fundo.className = "teste";
-	fundo.id = "teste";
+	let paiCirculos = document.createElement("div")
+	paiCirculos.className = "paiCirculos"
+	paiCirculos.id = "paiCirculos"
 	
-	saida.appendChild(fundo);
+	saida.appendChild(paiCirculos)
+
+	let fundo = document.createElement("div")
+	fundo.className = "teste"
+	fundo.id = "teste"
+	
+	document.getElementById("paiCirculos").appendChild(fundo)
 
 	if(quantidadeCirculos < 4 || quantidadeCirculos > 20){
 		c("Quantidade informada está fora dos limites.");
@@ -135,7 +146,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 
 			circulo.setAttribute("id", i);
 
-			saida.appendChild(circulo);			
+			document.getElementById("paiCirculos").appendChild(circulo);			
 		}		
 	}
 }
@@ -170,19 +181,20 @@ function atualizarCirculos(){
 function controleAlvos(indice){
 	if(indice == estado['alvo-atual']){
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
-		dadosTeste(1)
+		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
 	}
 	else if(indice == "iniciar")
 		c("Teste iniciado:")
 	else{
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
-		dadosTeste(0)
+		controle[controle.length] = {"status":false, "tempo": Date.now() - antes}
 	}
 	antes = Date.now();
 
 	condicao = (config['circulos']['quantidade'] - 1) / 2
 	if(estado['alvo-atual'] == condicao){
 		c("teste encerrado")
+		estado['alvo-atual'] = 0;
 		finalizarTeste()
 	}
 
@@ -241,14 +253,6 @@ function elementosCirculo(){
 	return el
 }
 
-function dadosTeste(status){
-	if(status == 1)
-		bool = true;
-	else
-		bool = false;
-
-	controle[controle.length] = {"status":bool, "tempo": Date.now() - antes}
-}
 
 function computarResultados(){
 	acertos = 0
@@ -279,8 +283,6 @@ function computarResultados(){
 	resultado = {"acertos": acertos, "erros": erros, "TMacertos": ta, "TMerros": te, "TM": tr, "PCA": pa, "PCE": pe}
 }
 
-
-
 function finalizarTeste(){
 	computarResultados()
 	let caixa = gId("caixa")
@@ -291,7 +293,7 @@ function finalizarTeste(){
 	caixa.setAttribute("style", "display: block;")
 	var t = document.createTextNode(JSON.stringify(resultado)) 
 	caixa.appendChild(t);
-	gId("fundo").remove(); 
+	gId("paiCirculos").remove(); 
 }
 
 function subirCirculos(indice){
