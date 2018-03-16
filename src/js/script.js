@@ -30,7 +30,8 @@ function iniciar(){
 
 	controle = []
 
-	tempos = []
+	resultado = []
+
 
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
@@ -49,8 +50,9 @@ function iniciarApp(){
 	atualizarCirculos()
 
 	adicionarEventos()
-	
+
 	controleAlvos("iniciar")
+
 
 }
 
@@ -164,18 +166,19 @@ function atualizarCirculos(){
 	var antes = Date.now();
 	var duracao = Date.now() - antes;
 */
-var antes = Date.now();
+
 function controleAlvos(indice){
 	if(indice == estado['alvo-atual']){
-		controle[controle.length] = {"status":'acerto', "tempo": Date.now()}
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+		dadosTeste(1)
 	}
 	else if(indice == "iniciar")
 		c("Teste iniciado:")
 	else{
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
-		controle[controle.length] = {"status":'erro', "tempo": Date.now()}
+		dadosTeste(0)
 	}
+	antes = Date.now();
 
 	condicao = (config['circulos']['quantidade'] - 1) / 2
 	if(estado['alvo-atual'] == condicao){
@@ -238,14 +241,55 @@ function elementosCirculo(){
 	return el
 }
 
+function dadosTeste(status){
+	if(status == 1)
+		bool = true;
+	else
+		bool = false;
+
+	controle[controle.length] = {"status":bool, "tempo": Date.now() - antes}
+}
+
+function computarResultados(){
+	acertos = 0
+	erros = 0
+	pa = 0
+	pe = 0
+	ta = 0
+	te = 0
+	tr = 0
+	for(i=0; i < config['circulos']['quantidade']; i++){
+		if(controle[i]['status'] == true){
+			acertos++;
+			ta += controle[i]['tempo']
+		}
+		else{
+			erros++;
+			te += controle[i]['tempo']
+		}
+	}
+	total = acertos + erros
+	tr = te + ta
+	pa = 100 * acertos / total
+	pe = 100 - pa
+	ta /= acertos;
+	te /= erros;
+	tr /= total;
+
+	resultado = {"acertos": acertos, "erros": erros, "TMacertos": ta, "TMerros": te, "TM": tr, "PCA": pa, "PCE": pe}
+}
+
+
+
 function finalizarTeste(){
+	computarResultados()
 	let caixa = gId("caixa")
 	let aviso = gId("aviso")
 	let init = gId("init")
 	aviso.setAttribute("style", "display:block;")
 	init.setAttribute("style", "display:block;")
 	caixa.setAttribute("style", "display: block;")
-	var t = document.createTextNode(JSON.stringify(controle)) 
+	var t = document.createTextNode(JSON.stringify(resultado)) 
 	caixa.appendChild(t);
 	gId("fundo").remove(); 
 }
