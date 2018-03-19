@@ -24,7 +24,6 @@ function iniciar(){
 
 	estado = {
 		'proximo-alvo':0,
-		'cliques': 0,
 		'alvo-atual': false,
 	}
 
@@ -71,16 +70,6 @@ function interfaceConfig(){
 	config['circulos']['width'] = config['circulos']['height'] = parseInt(gId('diametro-alvo').value) + "px";
 
 	config['circulos']['diametro-area'] = parseInt(gId('diametro-area').value);
-
-	/* 
-		Configurações não usadas. 
-
-		config['circulos']['width'] = parseInt(gId('width').value) + "px";
-		config['circulos']['height'] = parseInt(gId('height').value) + "px";
-		
-		config['circulos']['quantidade-minima'] = parseInt(gId('quantidade-minima').value)
-		config['circulos']['quantidade-maxima'] = parseInt(gId('quantidade-maxima').value)
-	*/
 
 	config['sequencia'] = gId('sequencia').value
 
@@ -131,7 +120,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			/* 									(quantidadeElementos, raio, lar, alt ) */
 
 			let raio = config['circulos']['diametro-area'] / 2;
-			let posicoesCirculos = coordElements(quantidadeCirculos, raio, raio, raio);
+			let posicoesCirculos = coordElements(quantidadeCirculos, raio, 250, 250);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
@@ -143,9 +132,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			);			
 
 			circulo.className = "circulo";
-
 			circulo.setAttribute("id", i);
-
 			document.getElementById("paiCirculos").appendChild(circulo);			
 		}		
 	}
@@ -161,7 +148,6 @@ function alvoCirculos(indiceAlvo){
 			circulos[i]['cor'] = config['cor']['vizinho']
 		}
 	}
-
 	atualizarCirculos()	
 }
 
@@ -173,10 +159,6 @@ function atualizarCirculos(){
 		circulosDOM[i].style.backgroundColor = circulos[i]['cor']
 	}
 }
-/* comandos para salvar tempo e milimetros
-	var antes = Date.now();
-	var duracao = Date.now() - antes;
-*/
 
 function controleAlvos(indice){
 	if(indice == estado['alvo-atual']){
@@ -216,11 +198,9 @@ function controleAlvos(indice){
 
 	else if( config['sequencia'] == 'aleatoria' ){
 		c("ordem ainda não desenvolvida")
-
 	}
 
 	else if( config['sequencia'] == 'extremo-oposto' ){
-
 		alvoCirculos(estado['proximo-alvo'])
 
 		estado['alvo-atual'] = estado['proximo-alvo']
@@ -279,8 +259,16 @@ function computarResultados(){
 	ta /= acertos;
 	te /= erros;
 	tr /= total;
-
-	resultado = {"acertos": acertos, "erros": erros, "TMacertos": ta, "TMerros": te, "TM": tr, "PCA": pa, "PCE": pe}
+	a = gId('diametro-alvo').value
+	d = gId('diametro-area').value
+	resultado = {"acertos": acertos, "erros": erros, 
+	"TMacertos": parseInt(ta.toFixed(5)), 
+	"TMerros": parseInt(te.toFixed(5)),
+	"TM": parseInt(tr.toFixed(5)), 
+	"PCA": parseFloat(pa.toFixed(2)), 
+	"PCE": parseFloat(pe.toFixed(2)),
+	"Fase:": 'D: ' + d + ' A: ' + a
+	}
 }
 
 function finalizarTeste(){
@@ -292,8 +280,9 @@ function finalizarTeste(){
 	init.setAttribute("style", "display:block;")
 	caixa.setAttribute("style", "display: block;")
 	var t = document.createTextNode(JSON.stringify(resultado)) 
-	caixa.appendChild(t);
-	gId("paiCirculos").remove(); 
+	caixa.appendChild(t)
+	gId("paiCirculos").remove()
+	controle = []
 }
 
 function subirCirculos(indice){

@@ -6,13 +6,23 @@
     border-style: solid;
     border-color: black;
 
-	background: #C0C0C0;	
+	background: #C0C0C0;
+	margin-left: auto;
+	margin-right: auto;	
 }
 
 .teste{
 	height: 600px;
 	width: 600px;
 	background: #C0C0C0;
+}
+
+.fundo{
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left: -300px;
+	margin-top: -300px;
 }
 
 body{
