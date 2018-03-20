@@ -8,9 +8,7 @@ function iniciar(){
 		'cor':{alvo:'#000000', 'vizinho':'#C0C0C0'},
 		'circulos': {
 			'quantidade':10, 
-			'alvo-inicial':0,			
-			'width': '80px',
-			'height': '80px',
+			'alvo-inicial':0
 		},
 		'sequencia': '',
 		'ambiente': '',
@@ -108,6 +106,8 @@ function adicionarCirculos(quantidadeCirculos, saida){
 	let fundo = document.createElement("div")
 	fundo.className = "teste"
 	fundo.id = "teste"
+	fundo.setAttribute("style", "width: " + screen.width + 
+		"px; height: " + screen.height + "px;")
 	
 	document.getElementById("paiCirculos").appendChild(fundo)
 
@@ -120,7 +120,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			/* 									(quantidadeElementos, raio, lar, alt ) */
 
 			let raio = config['circulos']['diametro-area'] / 2;
-			let posicoesCirculos = coordElements(quantidadeCirculos, raio, 250, 250);
+			let posicoesCirculos = coordElements(quantidadeCirculos, raio, 700, 350);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
@@ -271,6 +271,7 @@ function computarResultados(){
 	}
 }
 
+var contagem = 0
 function finalizarTeste(){
 	computarResultados()
 	let caixa = gId("caixa")
@@ -279,7 +280,14 @@ function finalizarTeste(){
 	aviso.setAttribute("style", "display:block;")
 	init.setAttribute("style", "display:block;")
 	caixa.setAttribute("style", "display: block;")
-	var t = document.createTextNode(JSON.stringify(resultado)) 
+	if(contagem == 0)
+		var t = document.createTextNode("[" + JSON.stringify(resultado) + ",") 
+	else if(contagem < 5)
+		var t = document.createTextNode(JSON.stringify(resultado) + ",")
+	else
+		var t = document.createTextNode(JSON.stringify(resultado) + "]")
+	contagem++
+	
 	caixa.appendChild(t)
 	gId("paiCirculos").remove()
 	controle = []
