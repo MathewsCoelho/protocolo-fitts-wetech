@@ -279,13 +279,14 @@ function finalizarTeste(){
 	let init = gId("init")
 	aviso.setAttribute("style", "display:block;")
 	init.setAttribute("style", "display:block;")
-	caixa.setAttribute("style", "display: block;")
 	if(contagem == 0)
 		var t = document.createTextNode("[" + JSON.stringify(resultado) + ",") 
 	else if(contagem < 5)
 		var t = document.createTextNode(JSON.stringify(resultado) + ",")
-	else
+	else{
 		var t = document.createTextNode(JSON.stringify(resultado) + "]")
+		caixa.setAttribute("style", "display: block;")
+	}
 	contagem++
 	
 	caixa.appendChild(t)
