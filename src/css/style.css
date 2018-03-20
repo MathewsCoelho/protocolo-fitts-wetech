@@ -1,3 +1,5 @@
+
+
 .circulo{
 	border-radius:50%;
 	-moz-border-radius:50%;
@@ -14,25 +16,36 @@
 .teste{
 }
 
-.fundo{
-	position:absolute;
-	left:50%;
-	top:50%;
-	margin-left: -800px;
-	margin-top: -450px;
-}
-
-body{
-	margin:0;
+body, div{
+	margin: 0;
 	padding: 0;
+	border: 0;
+	top: 0;
+	left: 0;
 }
+.fundo{
+	width: 100%;
+	height: 100%;
+	}
+
+
 
 .menu{
 	position: absolute;
-	right: 0;
-	bottom: 0;
 	padding: 15px;
+	left:50%;
+	top:50%;
+	margin-left: -174px;
+	margin-top: -60px;
 	background-color: #4d82de;
 	color: #fff;
 	cursor: pointer;
+}
+
+.slot-interface-config{
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left: -200px;
+	margin-top: -200px;
 }

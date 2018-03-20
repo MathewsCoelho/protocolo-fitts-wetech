@@ -1,4 +1,4 @@
-/* iniciar o script após o carregamento da 'pagina'. */
+﻿/* iniciar o script após o carregamento da 'pagina'. */
 window.addEventListener('DOMContentLoaded', iniciar)
 
 function iniciar(){
@@ -33,10 +33,11 @@ function iniciar(){
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
 	gId('menu').addEventListener('click', function(){ 
-		gId('slot-interface-config').style.display = 'block'; 
-		gId('caixa').style.display = 'none';
-		gId('aviso').style.display = 'none';
-		gId('init').style.display = 'none';
+		gId('slot-interface-config').style.display = 'block' 
+		gId('caixa').style.display = 'none'
+		gId('aviso').style.display = 'none'
+		gId('init').style.display = 'none'
+		gId('menu').style.display = 'none'
 	})
 }
 
@@ -98,10 +99,12 @@ function adicionarEventos(){
 /* exemplo de chamda da função: adicionarCirculos(12, document.getElementById("fundo")) */
 function adicionarCirculos(quantidadeCirculos, saida){
 	let paiCirculos = document.createElement("div")
+	saida.appendChild(paiCirculos)
 	paiCirculos.className = "paiCirculos"
 	paiCirculos.id = "paiCirculos"
+	paiCirculos.setAttribute("style", "width: 100%; height: 100%; margin: 0; padding: 0; border: 0;");
 	
-	saida.appendChild(paiCirculos)
+	
 
 	let fundo = document.createElement("div")
 	fundo.className = "teste"
@@ -120,7 +123,9 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			/* 									(quantidadeElementos, raio, lar, alt ) */
 
 			let raio = config['circulos']['diametro-area'] / 2;
-			let posicoesCirculos = coordElements(quantidadeCirculos, raio, 700, 350);
+			w = gId("fundo").offsetWidth;
+			h = gId("fundo").offsetHeight;
+			let posicoesCirculos = coordElements(quantidadeCirculos, raio, parseInt(w/2), parseInt(h/2), parseInt(config['circulos']['width'])/2);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
@@ -276,9 +281,8 @@ function finalizarTeste(){
 	computarResultados()
 	let caixa = gId("caixa")
 	let aviso = gId("aviso")
-	let init = gId("init")
-	aviso.setAttribute("style", "display:block;")
-	init.setAttribute("style", "display:block;")
+	let menu = gId("menu")
+	menu.setAttribute("style", "display:block;")
 	if(contagem == 0)
 		var t = document.createTextNode("[" + JSON.stringify(resultado) + ",") 
 	else if(contagem < 5)
@@ -286,6 +290,7 @@ function finalizarTeste(){
 	else{
 		var t = document.createTextNode(JSON.stringify(resultado) + "]")
 		caixa.setAttribute("style", "display: block;")
+		aviso.setAttribute("style", "display:block;")
 	}
 	contagem++
 	
@@ -330,8 +335,8 @@ function c(mensagem){
 /* Adriano Ferreira, 2018 */
 
 /* exemplo da chamada da função: coordElements(12, 200, 800, 800) */
-function coordElements (quantidadeElementos, raio, lar, alt ) {
-	/* raio -> distancia entre o centro da tela e os circulos */
+function coordElements (quantidadeElementos, distancia, lar, alt, raio ) {
+	/* distancia -> distancia entre o centro da tela e os circulos */
 	/* largura da tela/div */
 	/* altura da tela/div */
 	
@@ -346,11 +351,11 @@ function coordElements (quantidadeElementos, raio, lar, alt ) {
 		
 		if ( angulo == 90 ){
 			x = 0;
-			y = raio;
+			y = distancia;
 		}
 		else if ( angulo == 270){
 			x = 0;
-			y = -raio;
+			y = -distancia;
 		} // -- casos em que o coeficiente angular(tangente) é infinito
 	
 		else {
@@ -358,7 +363,7 @@ function coordElements (quantidadeElementos, raio, lar, alt ) {
 		}
 		
 		if ( typeof x == 'undefined'){
-			x = Math.pow(raio,2)/(Math.pow(coeficiente,2)+1); //
+			x = Math.pow(distancia,2)/(Math.pow(coeficiente,2)+1); //
 			x = Math.sqrt(x);
 			y = coeficiente*x;
 		}
@@ -376,13 +381,18 @@ function coordElements (quantidadeElementos, raio, lar, alt ) {
 		//c("Coeficiente: "+coeficiente);
 		//c("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
 	 
+
+
 		x+=lar; // Adaptando para pontos nao nulos
 		y+=alt;
+
+		x-=raio;
+		y-=raio;
 
 		resultado[i] = {}
 		resultado[i]['x'] = x;
 		resultado[i]['y'] = y;
-	
+		c("raio"+distancia);
 	}
 	return resultado;
 }
