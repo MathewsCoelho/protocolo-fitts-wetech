@@ -24,7 +24,7 @@ Como deve ser:
 <br/>Diametro área (D): [ 50, 100, 300 ]
 <br/>P.S: os valores acima são exemplos, com o exemplo acima teria 15 fases de testes.
 
-- [ ] 7: Processar o Log de Acertos e Erros para gerar os resultados.
+- [x] 7: Processar o Log de Acertos e Erros para gerar os resultados.
 <br/> Na primeira versão pode gerar o resultado no formato JSON em um input, o qual vai ser copiado e colado em um  [conversor de JSON para excel](http://www.convertcsv.com/json-to-csv.htm). Olhar as "Configurações sugeridas".
 
 - [ ] 8: Estilização:
