@@ -36,8 +36,7 @@ function iniciar(){
 		gId('slot-interface-config').style.display = 'block' 
 		gId('caixa').style.display = 'none'
 		gId('aviso').style.display = 'none'
-		gId('init').style.display = 'none'
-		gId('menu').style.display = 'none'
+		gId('init').style.display = 'none'		
 	})
 }
 
@@ -273,7 +272,7 @@ function computarResultados(){
 	"PCA": parseFloat(pa.toFixed(2)), 
 	"PCE": parseFloat(pe.toFixed(2)),
 	"Fase:": 'D: ' + d + ' A: ' + a
-	}
+	}	
 }
 
 var contagem = 0
@@ -290,13 +289,20 @@ function finalizarTeste(){
 	else{
 		var t = document.createTextNode(JSON.stringify(resultado) + "]")
 		caixa.setAttribute("style", "display: block;")
-		aviso.setAttribute("style", "display:block;")
+		aviso.setAttribute("style", "display:block;")		
 	}
 	contagem++
 	
-	caixa.appendChild(t)
+	caixa.appendChild(t)	
+
 	gId("paiCirculos").remove()
 	controle = []
+}
+
+function processarDados(){
+	console.log('processando dados');
+	saidaNaoProcessada = gId("caixa").value
+	gId("caixa").value = saidaNaoProcessada.replace(/\./g,",")
 }
 
 function subirCirculos(indice){
