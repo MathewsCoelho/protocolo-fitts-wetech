@@ -2,18 +2,14 @@
 
 ## Log de tarefas:
 
-- [x] 1: Verificar se o clique foi um acerto, erro (erro circulo errado, erro clique fora dos circulos).
+### Não Concluidas
+- [ ] Feed back sonoro, no clique com acerto e erro, ver os arquivos sounds/
 
-- [x] 2: Log de acertos e erros com seus repectivos tempos.
-(deve contar o numero de acerto, erro, o tempo de cada erro e acerto.)
+- [ ] Substituir "." por "," no resultado final. (o conversor de JSON para excel que estamos usando não aceita virgula como divisor de numero decimal)
 
-- [x] 3: Implementar a sequencia 'extremo-oposto' para quando o números de círculos for par, ver função controleAlvos(indice) do script.js.
+- [ ] Feed back visual, animação no cursor do mouse, ao ficar parrado carregar um barra circular em volta que representa o tempo do clique por tempo
 
-- [x] 4: Configuração do diamtro do alvo (A) e diametro da área (D), ver imagem 1.
-
-- [x] 5: Configurar para que o circulo alvo fique em cima dos vizinhos quando estiverem sobre-apostos. Sugestão usar z-index, exemplo:  gId('0').style.zIndex = "1"; .
-
-- [ ] 6: Gerar n fases de testes, diacordo com (A) e (D). A quantidade de testes vai ser o numero de (A)s vezes o numero de (D)s. O log de resultados deve capturar todos os resultados.
+- [ ] Gerar n fases de testes, diacordo com (A) e (D). A quantidade de testes vai ser o numero de (A)s vezes o numero de (D)s. O log de resultados deve capturar todos os resultados.
 
 Estado atual: 
 <br/>Diametro alvos (A): [ 100 ]
@@ -24,17 +20,28 @@ Como deve ser:
 <br/>Diametro área (D): [ 50, 100, 300 ]
 <br/>P.S: os valores acima são exemplos, com o exemplo acima teria 15 fases de testes.
 
-- [x] 7: Processar o Log de Acertos e Erros para gerar os resultados.
+### Concluidas
+- [x] Verificar se o clique foi um acerto, erro (erro circulo errado, erro clique fora dos circulos).
+
+- [x] Log de acertos e erros com seus repectivos tempos.
+(deve contar o numero de acerto, erro, o tempo de cada erro e acerto.)
+
+- [x] Implementar a sequencia 'extremo-oposto' para quando o números de círculos for par, ver função controleAlvos(indice) do script.js.
+
+- [x] Configuração do diamtro do alvo (A) e diametro da área (D), ver imagem 1.
+
+- [x] Configurar para que o circulo alvo fique em cima dos vizinhos quando estiverem sobre-apostos. Sugestão usar z-index, exemplo:  gId('0').style.zIndex = "1"; .
+
+- [x] Processar o Log de Acertos e Erros para gerar os resultados.
 <br/> Na primeira versão pode gerar o resultado no formato JSON em um input, o qual vai ser copiado e colado em um  [conversor de JSON para excel](http://www.convertcsv.com/json-to-csv.htm). Olhar as "Configurações sugeridas".
 
-- [ ] 8: Estilização:
-- [ ] 8.1: Seguir o padrão de estilização dos alvos e fundo do protocolo Fiits original: https://imgur.com/a/xeiuD.
-- [ ] 8.1: Ao chamar o menu escoder o teste.
-- [ ] 8.2: Centralizar a janela do teste.
-- [ ] 8.3: Estilizar o menu de configuração.
+- [x] Estilização:
+- [x] Seguir o padrão de estilização dos alvos e fundo do protocolo Fiits original: https://imgur.com/a/xeiuD.
+- [x] Ao chamar o menu escoder o teste.
+- [x] Centralizar a janela do teste.
+- [x] Estilizar o menu de configuração.
 
-- [ ] 9: Som de feedback do erro e acerto.
-- [x] 10: Gerar resultado em cada fase.
+- [x] Gerar resultado em cada fase.
 
 <img src="readme/protocolo-medidas.png"  width="450"/>
 
