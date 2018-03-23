@@ -3,8 +3,6 @@
 ## Log de tarefas:
 
 ### Não Concluidas
-- [ ] Feed back sonoro, no clique com acerto e erro, ver os arquivos sounds/
-
 - [ ] Substituir "." por "," no resultado final. (o conversor de JSON para excel que estamos usando não aceita virgula como divisor de numero decimal)
 
 - [ ] Feed back visual, animação no cursor do mouse, ao ficar parrado carregar um barra circular em volta que representa o tempo do clique por tempo
@@ -21,6 +19,10 @@ Como deve ser:
 <br/>P.S: os valores acima são exemplos, com o exemplo acima teria 15 fases de testes.
 
 ### Concluidas
+- [x] Feed back sonoro, no clique com acerto e erro, ver os arquivos sounds/
+
+- [x] Configuração e implementação da class gravel 
+
 - [x] Verificar se o clique foi um acerto, erro (erro circulo errado, erro clique fora dos circulos).
 
 - [x] Log de acertos e erros com seus repectivos tempos.
