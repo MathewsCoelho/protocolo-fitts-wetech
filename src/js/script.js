@@ -12,6 +12,10 @@ function iniciar(){
 		},
 		'sequencia': '',
 		'ambiente': '',
+		'feedback-sonoro':{
+			'click-acerto': new Audio ('sounds/sound1-correct.mp3'),
+			'click-erro': new Audio ('sounds/sound1-incorrect.mp3')
+		}
 	}
 	
 	/* config['sequencia'] = 'sequencial' || 'aleatoria' || 'extremo-oposto' */
@@ -167,15 +171,21 @@ function atualizarCirculos(){
 }
 
 function controleAlvos(indice){
+	
+	/* click acerto: o usuario clicou no alvo corretamente */
 	if(indice == estado['alvo-atual']){
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
 		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
+		config['feedback-sonoro']['click-acerto'].play()
 	}
 	else if(indice == "iniciar")
 		c("Teste iniciado:")
+	
+	/* click erro: o usuario não clicou no alvo */
 	else{
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
 		controle[controle.length] = {"status":false, "tempo": Date.now() - antes}
+		config['feedback-sonoro']['click-erro'].play()
 	}
 	antes = Date.now();
 
