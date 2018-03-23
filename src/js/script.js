@@ -37,14 +37,22 @@ function iniciar(){
 	gId('interface-iniciar').addEventListener('click', interfaceConfig)
 
 	gId('menu').addEventListener('click', function(){ 
-		gId('slot-interface-config').style.display = 'block' 
-		gId('caixa').style.display = 'none'
-		gId('aviso').style.display = 'none'
-		gId('init').style.display = 'none'		
+		if(statusAlvo == 2)
+			if(statusArea == 1)
+				return false
+
+			else
+			{
+				statusArea++
+				statusAlvo = 0;
+			}
+		else
+			statusAlvo++
+		iniciarApp()		
 	})
 }
 
-function iniciarApp(){	
+function iniciarApp(){
 	adicionarCirculos(
 		config['circulos']['quantidade'], 
 
@@ -59,19 +67,29 @@ function iniciarApp(){
 
 	controleAlvos("iniciar")
 
-
 }
 
 function interfaceConfig(){
+	diametroAlvos = gId("diametro-alvo").value
+	diametroArea = gId("diametro-area").value
+	vAlvos = diametroAlvos.split(" ")
+	vArea = diametroArea.split(" ")
+	statusArea = 0;
+	statusAlvo = 0;
+	if(vAlvos.length != 3 && vArea != 2){
+		alert("Digite um numero valido de testes.")
+		c("Digite um numero valido de testes.")
+		return false
+	}
 	config['cor']['alvo'] = gId('cor-alvo').value
 	config['cor']['vizinho'] = gId('cor-vizinho').value
 
 	config['circulos']['quantidade'] = parseInt(gId('quantidade').value)
 	config['circulos']['alvo-inicial'] = parseInt(gId('alvo-inicial').value)		
 
-	config['circulos']['width'] = config['circulos']['height'] = parseInt(gId('diametro-alvo').value) + "px";
+	config['circulos']['diametro'] = gId('diametro-alvo').value.split(" ");
 
-	config['circulos']['diametro-area'] = parseInt(gId('diametro-area').value);
+	config['circulos']['diametro-area'] = gId('diametro-area').value.split(" ");
 
 	config['sequencia'] = gId('sequencia').value
 
@@ -129,17 +147,17 @@ function adicionarCirculos(quantidadeCirculos, saida){
 			let circulo = document.createElement("div");
 			/* 									(quantidadeElementos, raio, lar, alt ) */
 
-			let raio = config['circulos']['diametro-area'] / 2;
+			let raio = config['circulos']['diametro-area'][statusArea] / 2;
 			w = gId("fundo").offsetWidth;
 			h = gId("fundo").offsetHeight;
-			let posicoesCirculos = coordElements(quantidadeCirculos, raio, parseInt(w/2), parseInt(h/2), parseInt(config['circulos']['width'])/2);
+			let posicoesCirculos = coordElements(quantidadeCirculos, raio, parseInt(w/2), parseInt(h/2), parseInt(config['circulos']['diametro'])/2);
 
 			circulo.setAttribute("style", 
 				"position: absolute;" +
 				"left:" + posicoesCirculos[i].x + "px;"+
 				"top: "+ posicoesCirculos[i].y + "px;"+
-				"width: " + config['circulos']['width'] + ";" +
-				"height: " + config['circulos']['height'] + ";" +
+				"width: " + config['circulos']['diametro'][statusAlvo] + "px;" +
+				"height: " + config['circulos']['diametro'][statusAlvo] + "px;" +
 				"background: " + config['cor']['vizinho'] + ";"
 				);			
 
@@ -173,7 +191,6 @@ function atualizarCirculos(){
 }
 
 function controleAlvos(indice){
-	
 	/* click acerto: o usuario clicou no alvo corretamente */
 	if(indice == estado['alvo-atual']){
 		
@@ -182,7 +199,7 @@ function controleAlvos(indice){
 		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
 
 		if(config['feedback-sonoro']['status']){
-			config['feedback-sonoro']['click-acerto'].play()	
+			config['feedback-sonoro']['click-acerto'].play()
 		}
 		
 	}
@@ -290,15 +307,13 @@ function computarResultados(){
 	ta /= acertos;
 	te /= erros;
 	tr /= total;
-	a = gId('diametro-alvo').value
-	d = gId('diametro-area').value
 	resultado = {"acertos": acertos, "erros": erros, 
 	"TMacertos": parseInt(ta.toFixed(5)), 
 	"TMerros": parseInt(te.toFixed(5)),
 	"TM": parseInt(tr.toFixed(5)), 
 	"PCA": parseFloat(pa.toFixed(2)), 
 	"PCE": parseFloat(pe.toFixed(2)),
-	"Fase:": 'D: ' + d + ' A: ' + a
+	"Fase:": 'D: ' + config['circulos']['diametro'][statusArea] + ' A: ' + config['circulos']['diametro'][statusAlvo]
 }	
 }
 

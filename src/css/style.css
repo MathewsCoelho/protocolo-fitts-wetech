@@ -30,15 +30,13 @@ body, div{
 	height: 100%;
 	}
 
-
-
 .menu{
 	position: absolute;
 	padding: 15px;
 	left:50%;
 	top:50%;
-	margin-left: -174px;
-	margin-top: -60px;
+	margin-left: -100px;
+	margin-top: -40px;
 	background-color: #4d82de;
 	color: #fff;
 	cursor: pointer;
