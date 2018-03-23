@@ -71,6 +71,8 @@ function interfaceConfig(){
 
 	config['sequencia'] = gId('sequencia').value
 
+	config['gravel'] = gId("gravel").checked;
+
 	gId('slot-interface-config').style.display = 'none';
 
 	iniciarApp()
@@ -308,8 +310,13 @@ function processarDados(){
 function subirCirculos(indice){
 	for(let i = 0; i < config['circulos']['quantidade']; i++){
 		gId(i).style.zIndex = "1";
+		gId(i).setAttribute("class", "circulo")
 	}
 	gId(indice).style.zIndex = "2";
+	if(config['gravel']){
+		gId(indice).setAttribute("class", "circulo gravel")
+	}
+
 }
 
 /* funções de conversão */
