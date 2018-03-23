@@ -49,7 +49,7 @@ function iniciarApp(){
 		config['circulos']['quantidade'], 
 
 		document.getElementById("fundo")
-	)
+		)
 
 	circulos = elementosCirculo()
 
@@ -77,6 +77,8 @@ function interfaceConfig(){
 
 	config['gravel'] = gId("gravel").checked;
 
+	config['feedback-sonoro']['status'] = gId("feedback-sonoro").checked;
+
 	gId('slot-interface-config').style.display = 'none';
 
 	iniciarApp()
@@ -84,17 +86,17 @@ function interfaceConfig(){
 
 function adicionarEventos(){
 	let circulos = document.getElementsByClassName("circulo")
-		let fundo = document.getElementById("teste");
+	let fundo = document.getElementById("teste");
 	for (let i = 0; i < circulos.length; i++) {
 		circulos[i].addEventListener(
 			'click',
 			function(){ controleAlvos(i) }
-		);
+			);
 	}
-		fundo.addEventListener(
+	fundo.addEventListener(
 		'click',
 		function(){ controleAlvos("div-fundo") }
-	);
+		);
 
 }
 
@@ -139,7 +141,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 				"width: " + config['circulos']['width'] + ";" +
 				"height: " + config['circulos']['height'] + ";" +
 				"background: " + config['cor']['vizinho'] + ";"
-			);			
+				);			
 
 			circulo.className = "circulo";
 			circulo.setAttribute("id", i);
@@ -174,19 +176,32 @@ function controleAlvos(indice){
 	
 	/* click acerto: o usuario clicou no alvo corretamente */
 	if(indice == estado['alvo-atual']){
+		
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+		
 		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
-		config['feedback-sonoro']['click-acerto'].play()
+
+		if(config['feedback-sonoro']['status']){
+			config['feedback-sonoro']['click-acerto'].play()	
+		}
+		
 	}
-	else if(indice == "iniciar")
+	else if(indice == "iniciar"){
 		c("Teste iniciado:")
+	}
 	
 	/* click erro: o usuario não clicou no alvo */
 	else{
+
 		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+
 		controle[controle.length] = {"status":false, "tempo": Date.now() - antes}
-		config['feedback-sonoro']['click-erro'].play()
+
+		if(config['feedback-sonoro']['status']){
+			config['feedback-sonoro']['click-erro'].play()
+		}
 	}
+	
 	antes = Date.now();
 
 	condicao = (config['circulos']['quantidade'] - 1) / 2
@@ -284,7 +299,7 @@ function computarResultados(){
 	"PCA": parseFloat(pa.toFixed(2)), 
 	"PCE": parseFloat(pe.toFixed(2)),
 	"Fase:": 'D: ' + d + ' A: ' + a
-	}	
+}	
 }
 
 var contagem = 0
@@ -332,15 +347,15 @@ function subirCirculos(indice){
 /* funções de conversão */
 
 function RGBToHex(col){
-    if(col.charAt(0)=='r'){
-        col=col.replace('rgb(','').replace(')','').split(',');
-        let r=parseInt(col[0], 10).toString(16);
-        let g=parseInt(col[1], 10).toString(16);
-        let b=parseInt(col[2], 10).toString(16);
-        r=r.length==1?'0'+r:r; g=g.length==1?'0'+g:g; b=b.length==1?'0'+b:b;
-        let colHex='#'+r+g+b;
-        return colHex;
-    }
+	if(col.charAt(0)=='r'){
+		col=col.replace('rgb(','').replace(')','').split(',');
+		let r=parseInt(col[0], 10).toString(16);
+		let g=parseInt(col[1], 10).toString(16);
+		let b=parseInt(col[2], 10).toString(16);
+		r=r.length==1?'0'+r:r; g=g.length==1?'0'+g:g; b=b.length==1?'0'+b:b;
+		let colHex='#'+r+g+b;
+		return colHex;
+	}
 }
 
 /* funções de redução, para diminuir codigo */
@@ -380,30 +395,30 @@ function coordElements (quantidadeElementos, distancia, lar, alt, raio ) {
 			x = 0;
 			y = -distancia;
 		} // -- casos em que o coeficiente angular(tangente) é infinito
-	
+
 		else {
 		(angulo == 180 || angulo == 360)?coeficiente = 0: coeficiente = Math.tan( angulo * Math.PI/180 ); // Casos em que é 0 
-		}
-		
-		if ( typeof x == 'undefined'){
+	}
+
+	if ( typeof x == 'undefined'){
 			x = Math.pow(distancia,2)/(Math.pow(coeficiente,2)+1); //
 			x = Math.sqrt(x);
 			y = coeficiente*x;
 		}
-					
+
 		/* Devido ao fato de que inverte-se os lados */
 		if (angulo>90 && angulo<270){
 			x *= -1;
 			y *= -1;
 		}
-	
+
 		//------ fim do sistema
 		d = Math.pow(x,2) + Math.pow(y,2); // distancia considerando ponto inicial (0,0);
 		d = Math.sqrt(d);
 		//c("Angulo: "+angulo+" x: " + x + " y: "+y);
 		//c("Coeficiente: "+coeficiente);
 		//c("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
-	 
+
 
 
 		x+=lar; // Adaptando para pontos nao nulos
