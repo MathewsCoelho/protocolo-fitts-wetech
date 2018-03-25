@@ -199,6 +199,7 @@ function controleAlvos(indice){
 		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
 
 		if(config['feedback-sonoro']['status']){
+			config['feedback-sonoro']['click-acerto'] = new Audio ('sounds/sound1-correct.mp3')
 			config['feedback-sonoro']['click-acerto'].play()
 		}
 		
@@ -215,6 +216,7 @@ function controleAlvos(indice){
 		controle[controle.length] = {"status":false, "tempo": Date.now() - antes}
 
 		if(config['feedback-sonoro']['status']){
+			config['feedback-sonoro']['click-erro'] = new Audio ('sounds/sound1-incorrect.mp3')
 			config['feedback-sonoro']['click-erro'].play()
 		}
 	}
