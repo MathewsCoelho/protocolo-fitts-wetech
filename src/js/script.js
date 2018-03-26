@@ -44,7 +44,7 @@ function iniciar(){
 			else
 			{
 				statusArea++
-				statusAlvo = 0;
+				statusAlvo = 0
 			}
 		else
 			statusAlvo++

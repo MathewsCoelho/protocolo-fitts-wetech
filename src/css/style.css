@@ -5,10 +5,14 @@
    border-width: 1px;
     border-style: solid;
     border-color: black;
-
-	background: #C0C0C0;
 	margin-left: auto;
 	margin-right: auto;	
+}
+
+.circulo:hover{
+	border-color: #A9A9A9;
+	border-width: 4px;
+	background-color: rgb(0, 0, 0);
 }
 
 .teste{
@@ -49,3 +53,4 @@ body, div{
 	margin-left: -200px;
 	margin-top: -200px;
 }
+
