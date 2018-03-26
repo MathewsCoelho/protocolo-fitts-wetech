@@ -294,24 +294,26 @@ function computarResultados(){
 	tr = 0
 	for(i=0; i < config['circulos']['quantidade']; i++){
 		if(controle[i]['status'] == true){
-			acertos++;
-			ta += controle[i]['tempo']
+			acertos++
+			if(i != 0)
+				ta += controle[i]['tempo']
 		}
 		else{
-			erros++;
-			te += controle[i]['tempo']
+			erros++
+			if(i != 0)
+				te += controle[i]['tempo']
 		}
 	}
 	total = acertos + erros
 	tr = te + ta
 	pa = 100 * acertos / total
 	pe = 100 - pa
-	ta /= acertos;
-	te /= erros;
-	tr /= total;
+	//ta /= acertos
+	//te /= erros
+	tr = tr / (total - 1)
 	resultado = {"acertos": acertos, "erros": erros, 
-	"TMacertos": parseInt(ta.toFixed(5)), 
-	"TMerros": parseInt(te.toFixed(5)),
+	//"TMacertos": parseInt(ta.toFixed(5)), 
+	//"TMerros": parseInt(te.toFixed(5)),
 	"TM": parseInt(tr.toFixed(5)), 
 	"PCA": parseFloat(pa.toFixed(2)), 
 	"PCE": parseFloat(pe.toFixed(2)),
