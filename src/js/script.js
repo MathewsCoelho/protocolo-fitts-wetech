@@ -317,7 +317,7 @@ function computarResultados(){
 	"TM": parseInt(tr.toFixed(5)), 
 	"PCA": parseFloat(pa.toFixed(2)), 
 	"PCE": parseFloat(pe.toFixed(2)),
-	"Fase:": 'D: ' + config['circulos']['diametro'][statusArea] + ' A: ' + config['circulos']['diametro'][statusAlvo]
+	"Fase:": 'D: ' + config['circulos']['diametro-area'][statusArea] + ' A: ' + config['circulos']['diametro'][statusAlvo]
 }	
 }
 
