@@ -29,7 +29,7 @@ function iniciar(){
 		'alvo-atual': false,
 	}
 
-	controle = []
+	controlef = []
 
 	resultado = []
 
@@ -67,6 +67,11 @@ function iniciarApp(){
 
 	controleAlvos("iniciar")
 
+	/* gravel */
+	if(config['gravel']){
+		graveEls = getElements()
+	}
+
 }
 
 function interfaceConfig(){
@@ -78,7 +83,7 @@ function interfaceConfig(){
 	statusAlvo = 0;
 	if(vAlvos.length != 3 && vArea != 2){
 		alert("Digite um numero valido de testes.")
-		c("Digite um numero valido de testes.")
+		cf("Digite um numero valido de testes.")
 		return false
 	}
 	config['cor']['alvo'] = gId('cor-alvo').value
@@ -140,7 +145,7 @@ function adicionarCirculos(quantidadeCirculos, saida){
 	document.getElementById("paiCirculos").appendChild(fundo)
 
 	if(quantidadeCirculos < 4 || quantidadeCirculos > 20){
-		c("Quantidade informada está fora dos limites.");
+		cf("Quantidade informada está fora dos limites.");
 	}
 	else{
 		for(let i = 0; i < quantidadeCirculos; i++){
@@ -194,9 +199,9 @@ function controleAlvos(indice){
 	/* click acerto: o usuario clicou no alvo corretamente */
 	if(indice == estado['alvo-atual']){
 		
-		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+		cf("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
 		
-		controle[controle.length] = {"status":true, "tempo": Date.now() - antes}
+		controlef[controlef.length] = {"status":true, "tempo": Date.now() - antes}
 
 		if(config['feedback-sonoro']['status']){
 			config['feedback-sonoro']['click-acerto'] = new Audio ('sounds/sound1-correct.mp3')
@@ -205,15 +210,15 @@ function controleAlvos(indice){
 		
 	}
 	else if(indice == "iniciar"){
-		c("Teste iniciado:")
+		cf("Teste iniciado:")
 	}
 	
 	/* click erro: o usuario não clicou no alvo */
 	else{
 
-		c("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
+		cf("Alvo clicado: "+ indice+", Alvo atual (alvo certo): "+ estado['alvo-atual'])
 
-		controle[controle.length] = {"status":false, "tempo": Date.now() - antes}
+		controlef[controlef.length] = {"status":false, "tempo": Date.now() - antes}
 
 		if(config['feedback-sonoro']['status']){
 			config['feedback-sonoro']['click-erro'] = new Audio ('sounds/sound1-incorrect.mp3')
@@ -225,18 +230,18 @@ function controleAlvos(indice){
 
 	condicao = (config['circulos']['quantidade'] - 1) / 2
 	if(estado['alvo-atual'] == condicao){
-		c("teste encerrado")
+		cf("teste encerrado")
 		estado['alvo-atual'] = 0;
 		finalizarTeste()
 	}
 
 	if(config['sequencia'] == 'sequencial'){
 
-		c("ordem sequencial");	
+		cf("ordem sequencial");	
 
 		if(estado['proximo-alvo'] >= circulos['quantidade']){
 			estado['proximo-alvo'] = 0
-			c('fechou o ciclo')
+			cf('fechou o ciclo')
 		}
 
 		alvoCirculos(estado['proximo-alvo'])
@@ -247,7 +252,7 @@ function controleAlvos(indice){
 	}
 
 	else if( config['sequencia'] == 'aleatoria' ){
-		c("ordem ainda não desenvolvida")
+		cf("ordem ainda não desenvolvida")
 	}
 
 	else if( config['sequencia'] == 'extremo-oposto' ){
@@ -293,15 +298,15 @@ function computarResultados(){
 	te = 0
 	tr = 0
 	for(i=0; i < config['circulos']['quantidade']; i++){
-		if(controle[i]['status'] == true){
+		if(controlef[i]['status'] == true){
 			acertos++
 			if(i != 0)
-				ta += controle[i]['tempo']
+				ta += controlef[i]['tempo']
 		}
 		else{
 			erros++
 			if(i != 0)
-				te += controle[i]['tempo']
+				te += controlef[i]['tempo']
 		}
 	}
 	total = acertos + erros
@@ -342,7 +347,7 @@ function finalizarTeste(){
 	caixa.appendChild(t)	
 
 	gId("paiCirculos").remove()
-	controle = []
+	controlef = []
 }
 
 function processarDados(){
@@ -359,6 +364,7 @@ function subirCirculos(indice){
 	gId(indice).style.zIndex = "2";
 	if(config['gravel']){
 		gId(indice).setAttribute("class", "circulo gravel")
+		graveEls = getElements()
 	}
 
 }
@@ -381,7 +387,7 @@ function RGBToHex(col){
 
 function gId(id){return document.getElementById(id)}
 
-function c(mensagem){
+function cf(mensagem){
 	if(config['ambiente'] == 'desenvolvimento'){
 		console.log(mensagem)
 	}	
@@ -434,9 +440,9 @@ function coordElements (quantidadeElementos, distancia, lar, alt, raio ) {
 		//------ fim do sistema
 		d = Math.pow(x,2) + Math.pow(y,2); // distancia considerando ponto inicial (0,0);
 		d = Math.sqrt(d);
-		//c("Angulo: "+angulo+" x: " + x + " y: "+y);
-		//c("Coeficiente: "+coeficiente);
-		//c("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
+		//cf("Angulo: "+angulo+" x: " + x + " y: "+y);
+		//cf("Coeficiente: "+coeficiente);
+		//cf("distancia: "+d); // valor do inicial ate o angulo de 90, adaptar para o circulo
 
 
 
@@ -449,7 +455,7 @@ function coordElements (quantidadeElementos, distancia, lar, alt, raio ) {
 		resultado[i] = {}
 		resultado[i]['x'] = x;
 		resultado[i]['y'] = y;
-		c("raio"+distancia);
+		cf("raio"+distancia);
 	}
 	return resultado;
 }
